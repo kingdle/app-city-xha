@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>青岛西海岸统计大数据平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="../css/mui.css">
+    <link rel="stylesheet" href="../css/setting.css">
+    <link rel="stylesheet" type="text/css" href="../css/feedback.css"/>
+    <link rel="stylesheet" href="../css/m-home.css">
+</head>
+
+<body class="mui-fullscreen">
+<div id="hd-app">
+    <div id="app" class="mui-views">
+        <div class="mui-view">
+            <div class="mui-pages">
+            </div>
+        </div>
+    </div>
+    <div id="setting" class="mui-page">
+        <div class="mui-page-content">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <todo-items></todo-items>
+                </div>
+            </div>
+        </div>
+        <!--页面主内容区结束-->
+    </div>
+    <!--单页面结束-->
+    <div id="account" class="mui-page">
+        <div class="mui-page-content">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <router-view></router-view>
+                    <content-items></content-items>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-template" id="todo-items-template">
+    <ul class="mui-table-view">
+        <li class="mui-table-view-cell article-list"
+            v-for="todo in list">
+            <a href="#account">
+                <router-link :to="{name:'foo',params:{id:todo.id}}" class="">
+                    <div class="cont">
+                        <h3>
+                            <span href="">{{todo.title}}</span>
+                        </h3>
+                        <div class="info">
+                        <span class="author">
+                            <span href="" class="name">{{todo.author_id}}</span>
+                            <span class="gap_point">•</span>
+                            <span>{{todo.updated_at}}</span>
+                        </span>
+                        </div>
+                        <p class="summary">{{todo.content | htmlspecialchars}}</p>
+                        <div class="tag">
+                            <i class="mui-icon mui-icon-flag"></i>
+                            <span class="collection-tag" href="">青岛新海岸新区</span>
+                        </div>
+                    </div>
+                </router-link>
+            </a>
+        </li>
+    </ul>
+</script>
+<script type="text/x-template" id="content-items-template">
+    <div class="mui-table-view mui-table-view-cell article-list">
+        <div class="cont">
+        <h3 style="color: #009296; padding:10px 0;font-weight: 400;">
+            {{list.title}}
+        </h3>
+        <div class="info">
+            <span class="gap_point">{{list.updated_at}}</span>
+        </div>
+        <p class="summary" v-html="list.content"></p>
+        </div>
+    </div>
+</script>
+<script src="../js/vue.js"></script>
+<script src="../libs/vue-resource.js"></script>
+<script src="../libs/vue-router.js"></script>
+<script src="../js/mui.js "></script>
+<script src="../js/mui.view.js "></script>
+<script>
+    Vue.component('todo-items', {
+        template: '#todo-items-template',
+        data: function () {
+            return {
+                list: []
+            }
+        },
+        created: function () {
+            var vm = this;
+            this.$http.get('http://city-hd.dev/api/posts').then((response) => {
+                this.list = response.data;
+            }, (response) => {
+                alert('error!');
+            });
+        }
+    })
+    Vue.filter('htmlspecialchars', function (value) {
+        var s = value;
+        var dd = s.replace(/<\/?.+?>/g, "");
+        var dds = dd.replace(/ /g, "");
+        return dds.substr(0, 80) + '...'
+
+    })
+    Vue.component('content-items', {
+        template: '#content-items-template',
+        data: function () {
+            return {
+                list: {}
+            }
+        },
+        created: function () {
+            var vm = this;
+            this.$http.get('http://city-hd.dev/api/post/' + this.$route.params.id).then(response => {
+                this.list = response.data;
+            })
+        }
+    })
+    const Foo = {template: '<div>Foo {{ $route.params.id }}</div>'}
+    const Bar = {template: '<div>bar {{ $route.params.id }}</div>'}
+
+    const routes = [
+        {path: '/foo/:id', name: 'foo', component: Foo},
+        {path: '/bar/:id', name: 'bar', component: Bar}
+    ]
+
+    const router = new VueRouter({
+        routes // （缩写）相当于 routes: routes
+    })
+
+    const app = new Vue({
+        router
+    }).$mount('#hd-app')
+
+</script>
+
+<script>
+    mui.init();
+    //初始化单页view
+    var viewApi = mui('#app').view({
+        defaultPage: '#setting'
+    });
+    //初始化单页的区域滚动
+    mui('.mui-scroll-wrapper').scroll();
+    var view = viewApi.view;
+    (function ($) {
+        //处理view的后退与webview后退
+        var oldBack = $.back;
+        $.back = function () {
+            if (viewApi.canBack()) { //如果view可以后退，则执行view的后退
+                viewApi.back();
+            } else { //执行webview后退
+                oldBack();
+            }
+        };
+    })(mui);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$USER_HOME$/Sites/city-hd" vcs="Git" />
+    <mapping directory="$USER_HOME$/Sites/laravel-admin.org" vcs="Git" />
+    <mapping directory="$USER_HOME$/Sites/laravel-vue-spa" vcs="Git" />
+    <mapping directory="$USER_HOME$/Sites/veg" vcs="Git" />
+    <mapping directory="$USER_HOME$/Sites/vuejs-2.0-cli" vcs="Git" />
+  </component>
+</project>

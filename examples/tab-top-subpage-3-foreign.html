@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>青岛西海岸新区统计大数据平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/mui.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/icons-extra.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css"/>
+    <style>
+        .chart {
+            min-height: 220px;
+            margin: 0px;
+            padding: 0px;
+            border-bottom: 1px solid #dde0e0;
+        }
+
+        .tables-foreign {
+            border-bottom: 1px solid #dde0e0;
+        }
+
+        .row-quota {
+            font-size: 12px;
+        }
+
+        .mui-content {
+            background-color: #ffffff;
+        }
+
+        .mui-content-padded h5 {
+            font-size: 16px;
+            font-weight: 400;
+
+            color: #122B40;
+        }
+
+        .mui-content-padded span {
+
+            font-size: 14px;
+            color: #122B40;
+            font-weight: 200;
+        }
+
+        #result {
+
+            font-size: 14px;
+            color: #122B40;
+            font-weight: 200;
+        }
+
+        #date-select h5 {
+            float: left;
+        }
+
+        #date-select h6 {
+            float: right;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #date-select i {
+            font-size: 16px;
+        }
+
+        #arrorwLeft {
+            padding: 12px 20px;
+        }
+
+        #arrorwRight {
+            padding: 12px 20px;
+        }
+        #default-date {
+	color:#d1356c;
+	font-weight: 500;
+	font-size: 16px;
+}
+    </style>
+
+
+</head>
+<body>
+<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+    <div class="mui-scroll">
+        <div class="mui-content-padded">
+            <h5>新区外资外贸趋势图</h5>
+            <div id="charts-contain" class="chart"></div>
+            <div class="slider-header" id='date-select' data-options='{"type":"month"}'>
+                <h5>外资外贸</h5>
+                <h6 id='date-select'>
+                    <i id="arrorwLeft" class="mui-icon mui-icon-arrowleft"></i>
+                    <span id="default-date" data-options='{"type":"month"}'>2017-06</span>
+                    <i class="mui-icon-extra mui-icon-extra-calendar"></i>
+                    <i id="arrorwRight" class="mui-icon mui-icon-arrowright"></i>
+                </h6>
+            </div>
+            <div class="tables-foreign" id="tables-foreign">
+                <div class="row-quota" id="quota-foreign">
+                    <table class="table table-hover scrolltable">
+                        <thead style="display:block;">
+                        <tr>
+                            <th>#</th>
+                            <th>指标名称</th>
+                            <th>绝对额(亿)</th>
+                            <th>增长</th>
+                        </tr>
+                        </thead>
+                        <tbody style="display:block; max-height:720px;">
+                        <tr>
+                            <th scope="row">1</th>
+                            <td class="tdT">地区生产总值</td>
+                            <td class="tdV">1521.2</td>
+                            <td class="tdS">12.1</td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td class="tdT">规上工业总产值</td>
+                            <td class="tdV">2620.2</td>
+                            <td class="tdS">13.8</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td class="tdT">固定资产投资总额</td>
+                            <td class="tdV">1013.2</td>
+                            <td class="tdS">11.3</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td class="tdT">限上贸易销售额</td>
+                            <td class="tdV">653.3</td>
+                            <td class="tdS">66.1</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td class="tdT">社会消费品零售额</td>
+                            <td class="tdV">279.2</td>
+                            <td class="tdS">11.7</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td class="tdT">一般公共预算收入</td>
+                            <td class="tdV">134.6</td>
+                            <td class="tdS">11.1</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td class="tdT">一般公共预算支出</td>
+                            <td class="tdV">113.4</td>
+                            <td class="tdS">15.9</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">8</th>
+                            <td class="tdT">税收收入</td>
+                            <td class="tdV">230.7</td>
+                            <td class="tdS">21.2</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="tdT">国税</td>
+                            <td class="tdV">156.4</td>
+                            <td class="tdS">29.5</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="tdT">地税</td>
+                            <td class="tdV">74.3</td>
+                            <td class="tdS">6.9</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">9</th>
+                            <td class="tdT">进出口总额</td>
+                            <td class="tdV">898.7</td>
+                            <td class="tdS">46.9</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="tdT">出口总额</td>
+                            <td class="tdV">395.8</td>
+                            <td class="tdS">22.8</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="tdT">实际利用外资</td>
+                            <td class="tdV">9.1</td>
+                            <td class="tdS">5</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">10</th>
+                            <td class="tdT">居民人均可支配收入</td>
+                            <td class="tdV">20359</td>
+                            <td class="tdS">8.8</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="tdT">城镇</td>
+                            <td class="tdV">23256</td>
+                            <td class="tdS">8.6</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td class="tdT">农村</td>
+                            <td class="tdV">12316</td>
+                            <td class="tdS">7.7</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/mui.js"></script>
+<script src="../libs/echarts-all-3.js"></script>
+<script src="../libs/jquery-2.1.0.js"></script>
+<script src="../js/hd-data.js"></script>
+<script src="../js/timeline.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script>
+    (function ($) {
+        $.init();
+        //初始化数据集store
+        new SyStore({
+            autoLoad: true,
+            datasetId: 3,
+            success: function (store) {
+//			console.log(store)
+                assetsChart(store);
+                function getMaxMinDate(store) {
+                    var timeMap = store.collection.time;
+                    var maxDate = null;
+                    var minDate = null;
+                    $.each(timeMap, function (key, value) {
+//					console.log(arguments)
+                        var yearStr = parseInt(key.split("-")[0]);
+                        var monthStr = parseInt(key.split("-")[1]);
+                        var curDate = new Date();
+                        curDate.setDate(1);
+                        curDate.setMonth(monthStr - 1);
+                        curDate.setFullYear(yearStr);
+                        if (maxDate) {
+                            maxDate = curDate.getTime() - maxDate.getTime() > 0 ? curDate : maxDate;
+                        } else {
+                            maxDate = curDate;
+                        }
+                        if (minDate) {
+                            minDate = curDate.getTime() - minDate.getTime() > 0 ? minDate : curDate;
+                        } else {
+                            minDate = curDate;
+                        }
+                    });
+                    return {maxDate: maxDate, minDate: minDate};
+
+                }
+
+                var maxMinDate = getMaxMinDate(store);
+//			console.log(maxMinDate)
+                //初始化kit配置
+                var _store = store;
+
+                var baseRes = {
+                    frame: 200000011,
+                    area: 3519,
+
+                };
+                var baseSpeed = {
+                    frame: 200000014,
+                    area: 3519,
+
+                };
+                //总量kit
+                var kitV = new SyValueKit(baseRes, _store);
+                //增速kit
+                var kitS = new SyValueKit(baseSpeed, _store);
+                //显示初始数值
+                var nowDate = maxMinDate.maxDate;
+                //设置kit的时间
+                kitV.baseFilterV.time_year = nowDate.getFullYear(); //获取完整的年份(4位,1970-????)
+                kitV.baseFilterV.time_month = nowDate.getMonth() + 1; //获取当前月份(0-11,0代表1月)
+                kitS.baseFilterV.time_year = nowDate.getFullYear();
+                kitS.baseFilterV.time_month = nowDate.getMonth() + 1;
+                var $result = $('#default-date')[0];
+                $result.innerText = kitV.baseFilterV.time_year + '-' + kitV.baseFilterV.time_month;
+//                console.log(kitV.baseFilterV.time_month)
+                var cardh = document.getElementsByClassName("tdT").length;
+                console.log(cardh)
+                for (var i = 0; i < cardh; i++) {
+                    var $title = $('.tdT')[i].innerText;
+                    var $speed = $('.tdS')[i];
+                    var $total = $('.tdV')[i];
+                    $speed.innerText = kitS.findValueByItemName($title, true);
+                    $total.innerText = kitV.findValueByItemName($title, true);
+                }
+
+                var result = $('#result')[0];
+                var btns = $('#default-date');
+
+                $('#arrorwLeft')[0].addEventListener('tap', function () {
+                    var timeStr = $result.innerText;
+                    var yearStr = timeStr.split("-")[0];
+//                    console.log(yearStr)
+                    var monthStr = timeStr.split("-")[1];
+                    var monthInt = parseInt(monthStr);
+                    var curTime = new Date();
+                    curTime.setFullYear(parseInt(yearStr));
+                    curTime.setDate(1);
+                    curTime.setMonth(monthInt - 1);
+                    curTime.setMonth(curTime.getMonth() - 1);
+//                    console.log(curTime)
+                    reloadValueByTime(curTime, $result, kitS, kitV)
+                })
+                $('#arrorwRight')[0].addEventListener('tap', function () {
+                    var timeStr = $result.innerText;
+                    var yearStr = timeStr.split("-")[0];
+//                    console.log(yearStr)
+                    var monthStr = timeStr.split("-")[1];
+                    var monthInt = parseInt(monthStr);
+                    var curTime = new Date();
+                    curTime.setFullYear(parseInt(yearStr));
+                    curTime.setDate(1);
+                    curTime.setMonth(monthInt - 1);
+                    curTime.setMonth(curTime.getMonth() + 1);
+//                    console.log(curTime)
+                    reloadValueByTime(curTime, $result, kitS, kitV)
+                })
+                btns.each(function (i, btn) {
+                    btn.addEventListener('tap', function () {
+                        var _self = this;
+                        if (_self.picker) {
+                            _self.picker.show(function (rs) {
+                                var year = rs.y.value;
+                                var month = parseInt(rs.m.value);
+                                var curDate = new Date();
+                                curDate.setDate(1);
+                                curDate.setFullYear(year);
+                                curDate.setMonth(month - 1);
+                                reloadValueByTime(curDate, $result, kitS, kitV)
+                            });
+                        } else {
+                            var optionsJson = this.getAttribute('data-options') || '{}';
+
+                            var options = JSON.parse(optionsJson);
+
+                            var id = this.getAttribute('id');
+                            _self.picker = new $.DtPicker(options);
+                            _self.picker.show(function (rs) {
+
+                                var year = rs.y.value;
+                                var month = parseInt(rs.m.value);
+                                var curDate = new Date();
+                                curDate.setDate(1);
+                                curDate.setFullYear(year);
+                                curDate.setMonth(month - 1);
+                                reloadValueByTime(curDate, $result, kitS, kitV)
+
+                            });
+                        }
+
+                    }, false);
+                });
+
+            }
+
+        });
+        function reloadValueByTime(curDate, $result, kitS, kitV) {
+//            console.log(curDate)
+            $result.innerText = curDate.getFullYear() + "-" + (curDate.getMonth() + 1);
+
+            var year = curDate.getFullYear();
+            var month = curDate.getMonth() + 1;
+            //设置kit的时间
+            kitV.baseFilterV.time_year = year;
+            kitV.baseFilterV.time_month = month;
+            kitS.baseFilterV.time_year = year;
+            kitS.baseFilterV.time_month = month;
+            //根据指标名称获取数值放到页面上
+            var cardh = document.getElementsByClassName("tdT").length;
+            for (var i = 0; i < cardh; i++) {
+                var $title = $('.tdT')[i].innerText;
+                var $speed = $('.tdS')[i];
+                var $total = $('.tdV')[i];
+                $speed.innerText = kitS.findValueByItemName($title, true);
+                $total.innerText = kitV.findValueByItemName($title, true);
+            }
+        }
+
+    })(mui);
+</script>
+<script type="text/javascript">
+    function assetsChart(store) {
+        // 基于准备好的dom，初始化echarts实例
+        var axisD = [];
+        for (var item in axisArr) {
+            axisD.push(axisArr[item].name);
+        }
+
+        var chartKit = new SyChartSeriesKit({
+            store: store,
+            series: [{
+                type: "item",
+                extField: store.findMetaByItemName({
+                    type: 'item',
+                    name: ''
+                }).extField
+            }, {
+                type: 'frame',
+                extField: store.findMetaByItemName({
+                    type: 'frame',
+                    name: '累计'
+                }).extField
+            }],
+            axis: axisArr,
+        });
+
+        var sChart = echarts.init(document.getElementById('charts-contain'));
+
+
+        var option = {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['增加值', '增速'],
+            },
+            grid: {x: '20%', y: '30%', width: '65%', height: '50%'},
+            toolbox: {},
+            xAxis: {
+                type: 'category',
+                splitLine: {show: true},
+                boundaryGap: false,
+                data: axisD
+            },
+            yAxis: [{
+                type: 'value',
+                name: '增加值',
+                splitLine: {show: false},
+                axisLabel: {
+                    formatter: '{value}亿元'
+                }
+            },
+                {
+                    type: 'value',
+                    name: '增速',
+                    splitLine: {show: false},
+                    axisLabel: {
+                        formatter: '{value}%'
+                    }
+                }],
+            series: [
+                {
+                    name: '增加值',
+                    type: 'bar',
+                    splitLine: {show: false},
+                    data: chartKit.genSeriesData({
+                        series: [{
+                            type: "item",
+                            extField: store.findMetaByItemName({
+                                type: 'item',
+                                name: '外资'
+                            }).extField
+                        }, {
+                            //        name: 2,
+                            type: 'frame',
+                            extField: store.findMetaByItemName({
+                                type: 'frame',
+                                name: '累计'
+                            }).extField
+                        }]
+                    }),
+                    markPoint: {
+                        data: [
+                            {type: 'max', name: '最快'},
+                            {type: 'min', name: '最慢'}
+                        ]
+                    },
+                    color: ['#ab8956'],
+                    markLine: {}
+                },
+                {
+                    name: '增速',
+                    type: 'line',
+                    yAxisIndex: 1,
+                    data: chartKit.genSeriesData({
+                        series: [{
+                            type: "item",
+                            extField: store.findMetaByItemName({
+                                type: 'item',
+                                name: '外资'
+                            }).extField
+                        }, {
+                            //        name: 2,
+                            type: 'frame',
+                            extField: store.findMetaByItemName({
+                                type: 'frame',
+                                name: '增长'
+                            }).extField
+                        }]
+                    }),
+                    markLine: {}
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        sChart.setOption(option);
+        $(window).resize(function () {
+            sChart.resize();
+        });
+    }
+</script>
+
+<script>
+    mui.init({
+        swipeBack: false,
+        keyEventBind: {
+            backbutton: false //关闭back按键监听
+        },
+        pullRefresh: {
+            container: '#pullrefresh',
+            up: {
+                contentrefresh: '正在加载...',
+                callback: pullupRefresh
+            }
+        }
+    });
+    var count = 0;
+    /**
+     * 上拉加载具体业务实现
+     */
+    function pullupRefresh() {
+        setTimeout(function () {
+            mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+            var table = document.body.querySelector('.mui-table-view');
+            var cells = document.body.querySelectorAll('.mui-table-view-cell');
+            for (var i = cells.length, len = i + 20; i < len; i++) {
+                var li = document.createElement('li');
+                li.className = 'mui-table-view-cell';
+                li.innerHTML = '<a class="mui-navigate-right">社会-Item ' + (i + 1) + '</a>';
+            }
+        }, 1000);
+    }
+    $(document).ready(function () {
+        var _width = $('#quota-foreign').width();
+        $('#quota-foreign th:first-child').width(_width * 0.1);
+        $('#quota-foreign td:first-child').width(_width * 0.1);
+        $('#quota-foreign th:nth-child(2)').width(_width * 0.3);
+        $('#quota-foreign td:nth-child(2)').width(_width * 0.3);
+        $('#quota-foreign th:nth-child(3)').width(_width * 0.3);
+        $('#quota-foreign td:nth-child(3)').width(_width * 0.3);
+        $('#quota-foreign th:nth-child(4)').width(_width * 0.2);
+        $('#quota-foreign td:nth-child(4)').width(_width * 0.2);
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,360 @@
+{
+	"@platforms": [
+		"android",
+		"iPhone",
+		"iPad"
+	],
+	"id": "H5FC02897",
+	"name": "数字西海岸",
+	"version": {
+		"name": "1.7.2",
+		"code": ""
+	},
+	"description": "权威数据发布平台",
+	"icons": {
+		"72": "icon.png"
+	},
+	"launch_path": "login.html",
+	"developer": {
+		"name": "x",
+		"email": "nkings@163.com",
+		"url": ""
+	},
+	"permissions": {
+
+
+		"Cache": {
+			"description": "管理应用缓存"
+		},
+
+		"Console": {
+			"description": "跟踪调试输出日志"
+		},
+		"Events": {
+			"description": "应用扩展事件"
+		},
+		"Runtime": {},
+		"Webview": {},
+		"Storage": {},
+		"Uploader": {},
+		"NativeUI": {},
+		"NativeObj": {},
+		"Navigator": {},
+		"Downloader": {},
+		"Zip": {},
+		"File": {},
+		"Device": {},
+		"Contacts": {},
+		"Invocation": {},
+		"XMLHttpRequest": {}
+	},
+	"plus": {
+		"launchwebview":{
+			"statusbar":{
+				"background":"#282e39"
+			}
+		},
+		"distribute": {
+			"google": {
+				"permissions": [
+					"<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+					"<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+					"<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+					"<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+					"<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+				]
+			},
+			"icons": {
+				"ios": {
+					"iphone": {
+						"retina": "unpackage/res/icons/114x114.png",
+						"normal": "unpackage/res/icons/57x57.png",
+						"retina8": "unpackage/res/icons/180x180.png",
+						"retina7": "unpackage/res/icons/120x120.png",
+						"settings-retina": "unpackage/res/icons/58x58.png",
+						"settings-normal": "unpackage/res/icons/29x29.png",
+						"spotlight-retina": "unpackage/res/icons/58x58.png",
+						"spotlight-normal": "unpackage/res/icons/29x29.png",
+						"settings-retina8": "unpackage/res/icons/87x87.png",
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",
+						"spotlight@3x": "unpackage/res/icons/120x120.png",
+						"notification@2x": "unpackage/res/icons/40x40.png",
+						"notification@3x": "unpackage/res/icons/60x60.png"
+					},
+					"ipad": {
+						"retina": "unpackage/res/icons/144x144.png",
+						"normal": "unpackage/res/icons/72x72.png",
+						"retina7": "unpackage/res/icons/152x152.png",
+						"normal7": "unpackage/res/icons/76x76.png",
+						"settings-retina": "unpackage/res/icons/58x58.png",
+						"settings-normal": "unpackage/res/icons/29x29.png",
+						"spotlight-retina": "unpackage/res/icons/100x100.png",
+						"spotlight-normal": "unpackage/res/icons/50x50.png",
+						"spotlight-normal7": "unpackage/res/icons/40x40.png",
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",
+						"proapp@2x": "unpackage/res/icons/167x167.png",
+						"notification": "unpackage/res/icons/20x20.png",
+						"notification@2x": "unpackage/res/icons/40x40.png"
+					},
+					"appstore": "unpackage/res/icons/1024x1024.png"
+				},
+				"android": {
+					"ldpi": "unpackage/res/icons/48x48.png",
+					"mdpi": "unpackage/res/icons/48x48.png",
+					"hdpi": "unpackage/res/icons/72x72.png",
+					"xhdpi": "unpackage/res/icons/96x96.png",
+					"xxhdpi": "unpackage/res/icons/144x144.png",
+					"xxxhdpi": "unpackage/res/icons/192x192.png"
+				}
+			},
+			"splashscreen": {
+				"android": {
+					"hdpi": "/Users/maxdata/Documents/统计局/mobile/images/login-index-480-762.png",
+					"xhdpi": "/Users/maxdata/Documents/统计局/mobile/images/login-index-720.png",
+					"xxhdpi": "/Users/maxdata/Documents/统计局/mobile/images/login-index-1080-1882.png"
+				}
+			}
+		},
+		"splashscreen": {
+			"autoclose": true,
+			"waiting": false,
+			"delay": "0"
+		},
+		"popGesture": "close",
+		"runmode": "normal",
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw=="
+	},
+	"dependencies": {
+		"pages": {
+			"forget_password.html": {
+				"href": "forget_password.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"js/app.js"
+				],
+				"priority": 0
+			},
+			"examples/tab-webview-subpage-setting.html": {
+				"href": "examples/tab-webview-subpage-setting.html",
+				"resources": [
+					"js/mui.js",
+					"js/mui.view.js",
+					"js/app.js",
+					"libs/jquery-2.1.0.js",
+					"images/logo.png",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/setting.css",
+					"css/feedback.css"
+				],
+				"refer": [
+					"login.html"
+				],
+				"priority": 1
+			},
+			"examples/tab-webview-subpage-contact.html": {
+				"href": "examples/tab-webview-subpage-contact.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js"
+				],
+				"priority": 2
+			},
+			"examples/tab-webview-subpage-chat.html": {
+				"href": "examples/tab-webview-subpage-chat.html",
+				"resources": [
+					"css/mui.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js"
+				],
+				"priority": 3
+			},
+			"examples/tab-top-subpage-3.html": {
+				"href": "examples/tab-top-subpage-3.html",
+				"resources": [
+					"css/mui.css",
+					"fonts/mui.ttf"
+				],
+				"priority": 4
+			},
+			"examples/tab-top-subpage-5.html": {
+				"href": "examples/tab-top-subpage-5.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js"
+				],
+				"priority": 5
+			},
+			"examples/tab-top-subpage-4.html": {
+				"href": "examples/tab-top-subpage-4.html",
+				"resources": [
+					"css/mui.css",
+					"fonts/mui.ttf"
+				],
+				"priority": 6
+			},
+			"examples/list-content.html": {
+				"href": "examples/list-content.html",
+				"resources": [
+					"css/mui.css",
+					"fonts/mui.ttf",
+					"css/icons-extra.css",
+					"fonts/mui-icons-extra.ttf",
+					"css/m-home.css",
+					"images/card-background.png",
+					"css/mui.picker.min.css",
+					"js/mui.js",
+					"js/mui.picker.min.js",
+					"libs/jquery-3.2.1.min.js",
+					"js/hd-data.js"
+				],
+				"priority": 7
+			},
+			"examples/tab-top-subpage-2.html": {
+				"href": "examples/tab-top-subpage-2.html",
+				"resources": [
+					"css/mui.css",
+					"fonts/mui.ttf",
+					"css/bootstrap.min.css",
+					"css/icons-extra.css",
+					"fonts/mui-icons-extra.ttf",
+					"css/mui.picker.min.css",
+					"js/hd-data.js",
+					"js/timeline.js",
+					"libs/echarts-all-3.js",
+					"js/mui.js",
+					"js/mui.picker.min.js",
+					"libs/jquery-2.1.0.js"
+				],
+				"priority": 8
+			},
+			"examples/tab-webview-subpage-about.html": {
+				"href": "examples/tab-webview-subpage-about.html",
+				"resources": [
+					"css/mui.css",
+					"fonts/mui.ttf",
+					"js/mui.js",
+					"js/webviewGroup.js"
+				],
+				"refer": [
+					"examples/tab-top-subpage-3.html",
+					"examples/tab-top-subpage-5.html",
+					"examples/tab-top-subpage-4.html",
+					"examples/list-content.html",
+					"examples/tab-top-subpage-2.html"
+				],
+				"priority": 4
+			},
+			"index.html": {
+				"href": "index.html",
+				"resources": [
+					"css/icons-extra.css",
+					"fonts/mui-icons-extra.ttf",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.js",
+					"images/logo-mobile.png"
+				],
+				"refer": [
+					"examples/tab-webview-subpage-setting.html",
+					"examples/tab-webview-subpage-contact.html",
+					"examples/tab-webview-subpage-chat.html",
+					"examples/tab-webview-subpage-about.html"
+				],
+				"priority": 1
+			},
+			"unlock.html": {
+				"href": "unlock.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"js/mui.locker.js",
+					"js/app.js"
+				],
+				"refer": [
+					"login.html"
+				],
+				"priority": 2
+			},
+			"reg.html": {
+				"href": "reg.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"js/app.js"
+				],
+				"priority": 3
+			},
+			"login.html": {
+				"href": "login.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"js/mui.enterfocus.js",
+					"js/app.js",
+					"js/update.js"
+				],
+				"refer": [
+					"forget_password.html",
+					"index.html",
+					"unlock.html",
+					"reg.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"static/js/manifest.c800d6c28b74e22a3e76.js.map",
+				"images/weixin.png",
+				"libs/echarts-all.js",
+				"images/qq.png",
+				"examples/tab-top-subpage-3-foreign.html",
+				"examples/tab-top-subpage-3-gdp.html",
+				"static/js/manifest.c800d6c28b74e22a3e76.js",
+				"examples/tab-top-subpage-4-province.html",
+				"js/vue.js",
+				"static/js/app.26e920e6a2145e685888.js",
+				"images/60x60.gif",
+				"libs/vue-resource.js",
+				"images/sinaweibo.png",
+				"libs/easymob-webim-sdk/json2.js",
+				"examples/tab-top-subpage-4-newarea.html",
+				"libs/easymob-webim-sdk/jquery-1.11.1.js",
+				"js/feedback-page.js",
+				"examples/tab-top-subpage-1-content.html",
+				"examples/setting.html",
+				"examples/tab-top-subpage-6.html",
+				"libs/easymob-webim-sdk/easemob.im-1.0.5.js",
+				"examples/tab-top-subpage-4-city.html",
+				"libs/easymob-webim-sdk/quickstart.md",
+				"setting.html",
+				"examples/tab-top-subpage-3-assets.html",
+				"js/vue-axios.min.js",
+				"libs/vue-router.js",
+				"static/js/vendor.2ae9ba3caa8e0d21bea6.js.map",
+				"static/js/vendor.2ae9ba3caa8e0d21bea6.js",
+				"examples/tab-top-subpage-3-trade.html",
+				"css/app.css",
+				"static/js/app.26e920e6a2145e685888.js.map",
+				"css/feedback-page.css",
+				"js/feedback.js",
+				"libs/easymob-webim-sdk/strophe-custom-2.0.0.js",
+				"examples/tab-top-subpage-1.html"
+			]
+		}
+	},"fullscreen":false
+}

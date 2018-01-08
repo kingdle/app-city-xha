@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/Sites/city-hd/.idea/city-hd.iml" filepath="$USER_HOME$/Sites/city-hd/.idea/city-hd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/city-xha.iml" filepath="$PROJECT_DIR$/.idea/city-xha.iml" />
+      <module fileurl="file://$USER_HOME$/Sites/laravel-vue-spa/.idea/laravel-vue-spa.iml" filepath="$USER_HOME$/Sites/laravel-vue-spa/.idea/laravel-vue-spa.iml" />
+      <module fileurl="file://$USER_HOME$/Sites/vue-spa/.idea/vue-spa.iml" filepath="$USER_HOME$/Sites/vue-spa/.idea/vue-spa.iml" />
+      <module fileurl="file://$USER_HOME$/Sites/vuejs-2.0-cli/.idea/vuejs-2.0-cli.iml" filepath="$USER_HOME$/Sites/vuejs-2.0-cli/.idea/vuejs-2.0-cli.iml" />
+    </modules>
+  </component>
+</project>

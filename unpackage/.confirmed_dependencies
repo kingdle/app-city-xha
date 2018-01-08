@@ -1,0 +1,176 @@
+{
+  "forget_password.html": {
+    "href": "forget_password.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "js/app.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "examples/tab-webview-subpage-setting.html": {
+    "href": "examples/tab-webview-subpage-setting.html",
+    "resources": [
+      "js/mui.js",
+      "js/mui.view.js",
+      "js/app.js",
+      "libs/jquery-2.1.0.js",
+      "images/logo.png",
+      "css/mui.min.css",
+      "css/setting.css",
+      "css/feedback.css"
+    ],
+    "refer": [
+      "login.html"
+    ],
+    "priority": 0
+  },
+  "examples/tab-webview-subpage-contact.html": {
+    "href": "examples/tab-webview-subpage-contact.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "examples/tab-webview-subpage-chat.html": {
+    "href": "examples/tab-webview-subpage-chat.html",
+    "resources": [
+      "css/mui.css",
+      "js/mui.min.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "examples/tab-top-subpage-3.html": {
+    "href": "examples/tab-top-subpage-3.html",
+    "resources": [
+      "css/mui.css"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "examples/tab-top-subpage-5.html": {
+    "href": "examples/tab-top-subpage-5.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "examples/tab-top-subpage-4.html": {
+    "href": "examples/tab-top-subpage-4.html",
+    "resources": [
+      "css/mui.css"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "examples/list-content.html": {
+    "href": "examples/list-content.html",
+    "resources": [
+      "css/mui.css",
+      "css/icons-extra.css",
+      "css/m-home.css",
+      "css/mui.picker.min.css",
+      "js/mui.js",
+      "js/mui.picker.min.js",
+      "libs/jquery-3.2.1.min.js",
+      "js/hd-data.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "examples/tab-top-subpage-2.html": {
+    "href": "examples/tab-top-subpage-2.html",
+    "resources": [
+      "css/mui.css",
+      "css/bootstrap.min.css",
+      "css/icons-extra.css",
+      "css/mui.picker.min.css",
+      "js/hd-data.js",
+      "js/timeline.js",
+      "libs/echarts-all-3.js",
+      "js/mui.js",
+      "js/mui.picker.min.js",
+      "libs/jquery-2.1.0.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "examples/tab-webview-subpage-about.html": {
+    "href": "examples/tab-webview-subpage-about.html",
+    "resources": [
+      "css/mui.css",
+      "js/mui.js",
+      "js/webviewGroup.js"
+    ],
+    "refer": [
+      "examples/tab-top-subpage-3.html",
+      "examples/tab-top-subpage-5.html",
+      "examples/tab-top-subpage-4.html",
+      "examples/list-content.html",
+      "examples/tab-top-subpage-2.html"
+    ],
+    "priority": 0
+  },
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "css/icons-extra.css",
+      "css/mui.min.css",
+      "js/mui.js",
+      "images/logo-mobile.png"
+    ],
+    "refer": [
+      "examples/tab-webview-subpage-setting.html",
+      "examples/tab-webview-subpage-contact.html",
+      "examples/tab-webview-subpage-chat.html",
+      "examples/tab-webview-subpage-about.html"
+    ],
+    "priority": 0
+  },
+  "unlock.html": {
+    "href": "unlock.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "js/mui.locker.js",
+      "js/app.js"
+    ],
+    "refer": [
+      "login.html"
+    ],
+    "priority": 0
+  },
+  "reg.html": {
+    "href": "reg.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "js/app.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "login.html": {
+    "href": "login.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "js/mui.enterfocus.js",
+      "js/app.js",
+      "js/update.js"
+    ],
+    "refer": [
+      "forget_password.html",
+      "index.html",
+      "unlock.html",
+      "reg.html"
+    ],
+    "priority": 0
+  }
+}

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>青岛西海岸新区统计大数据平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/mui.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/icons-extra.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css"/>
+    <style>
+        .chart {
+            min-height: 220px;
+            margin: 0px;
+            padding: 0px;
+            border-bottom: 1px solid #dde0e0;
+        }
+
+        .tables {
+            border-bottom: 1px solid #dde0e0;
+        }
+
+        .row-quota {
+            font-size: 12px;
+        }
+
+        .mui-content {
+            background-color: #ffffff;
+        }
+
+        .mui-content-padded h5 {
+            font-size: 16px;
+            font-weight: 400;
+
+            color: #122B40;
+        }
+
+        .mui-content-padded span {
+
+            font-size: 14px;
+            color: #122B40;
+            font-weight: 200;
+        }
+
+        #result {
+
+            font-size: 14px;
+            color: #122B40;
+            font-weight: 200;
+        }
+
+        #date-select h5 {
+            float: left;
+        }
+
+        #date-select h6 {
+            float: right;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #date-select i {
+            font-size: 16px;
+        }
+
+        #arrorwLeft {
+            padding: 12px 15px;
+        }
+
+        #arrorwRight {
+            padding: 12px 15px;
+        }
+        #default-date {
+	color:#d1356c;
+	font-weight: 500;
+	font-size: 16px;
+}
+    </style>
+</head>
+<body>
+<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+    <div class="mui-scroll">
+        <div class="mui-content-padded">
+            <div class="slider-header" id='date-select' data-options='{"type":"month"}'>
+                <h5>地区生产总值排名</h5>
+                <h6 id='date-select'>
+                    <i id="arrorwLeft" class="mui-icon mui-icon-arrowleft"></i>
+                    <span id="default-date" data-options='{"type":"month"}'>2017-06</span>
+                    <i class="mui-icon-extra mui-icon-extra-calendar"></i>
+                    <i id="arrorwRight" class="mui-icon mui-icon-arrowright"></i>
+                </h6>
+            </div>
+            <div class="tables" id="tables">
+                <div class="row-quota" id="quota">
+                    <table class="table table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>区市</th>
+                                                        <th>累计（计量单位：万元）</th>
+                                                        <th>增长</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody itemName="地区生产总值">
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td class="tdT">青岛市</td>
+                                                        <td class="tdV">29342101</td>
+                                                        <td class="tdS">23.3%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td class="tdT">市南区</td>
+                                                        <td class="tdV">4261821</td>
+                                                        <td class="tdS">41.6%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td class="tdT">市北区</td>
+                                                        <td class="tdV">795272</td>
+                                                        <td class="tdS">26.1%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td class="tdT">李沧区</td>
+                                                        <td class="tdV">718261</td>
+                                                        <td class="tdS">60.9%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>5</td>
+                                                        <td class="tdT">崂山区</td>
+                                                        <td class="tdV">2918526</td>
+                                                        <td class="tdS">16.5%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>6</td>
+                                                        <td class="tdT">青岛西海岸新区</td>
+                                                        <td class="tdV">10181851</td>
+                                                        <td class="tdS">38.6%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>7</td>
+                                                        <td class="tdT">城阳区</td>
+                                                        <td class="tdV">3126345</td>
+                                                        <td class="tdS">6.9%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>8</td>
+                                                        <td class="tdT">即墨市</td>
+                                                        <td class="tdV">1742339</td>
+                                                        <td class="tdS">4.8%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>9</td>
+                                                        <td class="tdT">胶州市</td>
+                                                        <td class="tdV">2140241</td>
+                                                        <td class="tdS">8.3%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>10</td>
+                                                        <td class="tdT">平度市</td>
+                                                        <td class="tdV">950246</td>
+                                                        <td class="tdS">20%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>11</td>
+                                                        <td class="tdT">莱西市</td>
+                                                        <td class="tdV">990298</td>
+                                                        <td class="tdS">2%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>12</td>
+                                                        <td class="tdT">红岛经济区</td>
+                                                        <td class="tdV">452347</td>
+                                                        <td class="tdS">-1.6%</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                </div>
+            </div>
+        </div>
+
+       
+    </div>
+</div>
+<script src="../libs/jquery-2.1.0.js"></script>
+<script src="../js/hd-data.js"></script>
+<script src="../js/timeline.js"></script>
+<script src="../js/mui.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script>
+			(function($) {
+				$.init();
+				//初始化数据集store
+				new SyStore({
+					autoLoad: true,
+					datasetId: 7,
+					success: function(store) {
+						function getMaxMinDate(store) {
+							var timeMap = store.collection.time;
+							var maxDate = null;
+							var minDate = null;
+							$.each(timeMap, function(key, value) {
+								//					console.log(arguments)
+								var yearStr = parseInt(key.split("-")[0]);
+								var monthStr = parseInt(key.split("-")[1]);
+								var curDate = new Date();
+								curDate.setDate(1);
+								curDate.setMonth(monthStr - 1);
+								curDate.setFullYear(yearStr);
+								if(maxDate) {
+									maxDate = curDate.getTime() - maxDate.getTime() > 0 ? curDate : maxDate;
+								} else {
+									maxDate = curDate;
+								}
+								if(minDate) {
+									minDate = curDate.getTime() - minDate.getTime() > 0 ? minDate : curDate;
+								} else {
+									minDate = curDate;
+								}
+							});
+							return {
+								maxDate: maxDate,
+								minDate: minDate
+							};
+
+						}
+
+						var maxMinDate = getMaxMinDate(store);
+						//初始化kit配置
+						var _store = store;
+						console.log()
+						var meta = store.findMetaByItemName({
+							type: 'item',
+							name: $('tbody')[0].attributes[0].nodeValue
+						});
+						var baseRes = {
+							frame: 200000011,
+							item: meta.extField
+						};
+						var baseSpeed = {
+							frame: 200000014,
+							item: meta.extField
+
+						};
+						//总量kit
+						var kitV = new SyValueKit(baseRes, _store);
+						//增速kit
+						var kitS = new SyValueKit(baseSpeed, _store);
+						//显示初始数值
+						maxMinDate.maxDate.setMonth(maxMinDate.maxDate.getMonth()-(maxMinDate.maxDate.getMonth()+1)%3);
+						var nowDate = maxMinDate.maxDate;
+						//设置kit的时间
+						kitV.baseFilterV.time_year = nowDate.getFullYear(); //获取完整的年份(4位,1970-????)
+						kitV.baseFilterV.time_month = nowDate.getMonth() + 1; //获取当前月份(0-11,0代表1月)
+						kitS.baseFilterV.time_year = nowDate.getFullYear();
+						kitS.baseFilterV.time_month = nowDate.getMonth() + 1;
+						var $result = $('#default-date')[0];
+						$result.innerText = kitV.baseFilterV.time_year + '-' + kitV.baseFilterV.time_month;
+						//                console.log(kitV.baseFilterV.time_month)
+						var cardh = document.getElementsByClassName("tdT").length;
+						console.log(cardh)
+						for(var i = 0; i < cardh; i++) {
+							var $title = $('.tdT')[i].innerText;
+							var $speed = $('.tdS')[i];
+							var $total = $('.tdV')[i];
+							$speed.innerText = kitS.findValueByAreaName($title, true);
+							$total.innerText = kitV.findValueByAreaName($title, true);
+						}
+
+						var result = $('#result')[0];
+						var btns = $('#default-date');
+
+						$('#arrorwLeft')[0].addEventListener('tap', function() {
+							var timeStr = $result.innerText;
+							var yearStr = timeStr.split("-")[0];
+							//                    console.log(yearStr)
+							var monthStr = timeStr.split("-")[1];
+							var monthInt = parseInt(monthStr);
+							var curTime = new Date();
+							curTime.setFullYear(parseInt(yearStr));
+							curTime.setDate(1);
+							curTime.setMonth(monthInt - 1);
+							curTime.setMonth(curTime.getMonth() - 3);
+							//                    console.log(curTime)
+							reloadValueByTime(curTime, $result, kitS, kitV)
+						})
+						$('#arrorwRight')[0].addEventListener('tap', function() {
+							var timeStr = $result.innerText;
+							var yearStr = timeStr.split("-")[0];
+							//                    console.log(yearStr)
+							var monthStr = timeStr.split("-")[1];
+							var monthInt = parseInt(monthStr);
+							var curTime = new Date();
+							curTime.setFullYear(parseInt(yearStr));
+							curTime.setDate(1);
+							curTime.setMonth(monthInt - 1);
+							curTime.setMonth(curTime.getMonth() + 3);
+							//                    console.log(curTime)
+							reloadValueByTime(curTime, $result, kitS, kitV)
+						})
+						btns.each(function(i, btn) {
+							btn.addEventListener('tap', function() {
+								var _self = this;
+								if(_self.picker) {
+									_self.picker.show(function(rs) {
+										var year = rs.y.value;
+										var month = parseInt(rs.m.value);
+										var curDate = new Date();
+										curDate.setDate(1);
+										curDate.setFullYear(year);
+										curDate.setMonth(month - 1);
+										reloadValueByTime(curDate, $result, kitS, kitV)
+									});
+								} else {
+									var optionsJson = this.getAttribute('data-options') || '{}';
+
+									var options = JSON.parse(optionsJson);
+
+									var id = this.getAttribute('id');
+									_self.picker = new $.DtPicker(options);
+									_self.picker.show(function(rs) {
+
+										var year = rs.y.value;
+										var month = parseInt(rs.m.value);
+										var curDate = new Date();
+										curDate.setDate(1);
+										curDate.setFullYear(year);
+										curDate.setMonth(month - 1);
+										reloadValueByTime(curDate, $result, kitS, kitV)
+
+									});
+								}
+
+							}, false);
+						});
+
+					}
+
+				});
+
+				function reloadValueByTime(curDate, $result, kitS, kitV) {
+					//            console.log(curDate)
+					$result.innerText = curDate.getFullYear() + "-" + (curDate.getMonth() + 1);
+
+					var year = curDate.getFullYear();
+					var month = curDate.getMonth() + 1;
+					//设置kit的时间
+					kitV.baseFilterV.time_year = year;
+					kitV.baseFilterV.time_month = month;
+					kitS.baseFilterV.time_year = year;
+					kitS.baseFilterV.time_month = month;
+					//根据指标名称获取数值放到页面上
+					var cardh = document.getElementsByClassName("tdT").length;
+					for(var i = 0; i < cardh; i++) {
+						var $title = $('.tdT')[i].innerText;
+						var $speed = $('.tdS')[i];
+						var $total = $('.tdV')[i];
+						$speed.innerText = kitS.findValueByAreaName($title, true);
+						$total.innerText = kitV.findValueByAreaName($title, true);
+					}
+				}
+
+			})(mui);
+		</script>
+<script>
+    mui.init({
+        swipeBack: false,
+        keyEventBind: {
+            backbutton: false //关闭back按键监听
+        },
+        pullRefresh: {
+            container: '#pullrefresh',
+            up: {
+                contentrefresh: '正在加载...',
+                callback: pullupRefresh
+            }
+        }
+    });
+    var count = 0;
+    /**
+     * 上拉加载具体业务实现
+     */
+    function pullupRefresh() {
+        setTimeout(function () {
+            mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+            var table = document.body.querySelector('.mui-table-view');
+            var cells = document.body.querySelectorAll('.mui-table-view-cell');
+            for (var i = cells.length, len = i + 20; i < len; i++) {
+                var li = document.createElement('li');
+                li.className = 'mui-table-view-cell';
+                li.innerHTML = '<a class="mui-navigate-right">社会-Item ' + (i + 1) + '</a>';
+            }
+        }, 1000);
+    }
+    $(document).ready(function () {
+        var _width = $('#quota').width();
+        $('#quota th:first-child').width(_width * 0.1);
+        $('#quota td:first-child').width(_width * 0.1);
+        $('#quota th:nth-child(2)').width(_width * 0.3);
+        $('#quota td:nth-child(2)').width(_width * 0.3);
+        $('#quota th:nth-child(3)').width(_width * 0.3);
+        $('#quota td:nth-child(3)').width(_width * 0.3);
+        $('#quota th:nth-child(4)').width(_width * 0.2);
+        $('#quota td:nth-child(4)').width(_width * 0.2);
+    })
+</script>
+</body>
+
+</html>

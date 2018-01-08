@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>青岛西海岸统计大数据平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/mui.css">
+    <link rel="stylesheet" type="text/css" href="../css/icons-extra.css"/>
+    <link rel="stylesheet" href="../css/m-home.css">
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css"/>
+</head>
+
+<body>
+<div id="app-list">
+    <div class="title">
+        <div id="slider" class="mui-slider">
+            <div class="slider-header">
+                <h5 id='result'>
+                    总体指标完成情况
+                </h5>
+                <h6 id='date-select'>
+                    <i id="arrorwLeft" class="mui-icon mui-icon-arrowleft"></i>
+                    <span id="default-date" data-options='{"type":"month"}'>2017-06</span>
+                    <i class="mui-icon-extra mui-icon-extra-calendar"></i>
+                    <i id="arrorwRight" class="mui-icon mui-icon-arrowright"></i>
+                </h6>
+            </div>
+            <div class="mui-slider-group mui-slider-loop  card-mo">
+                <!-- 第2屏 -->
+                <div class="mui-slider-item">
+                    <div class="slider-two card-m">
+                        <h5>公共预算收入</h5>
+                        <h4><span class="speed">12.1</span>%</h4>
+                        <h4><span class="total">1521.2</span>亿元</h4>
+                    </div>
+                    <div class="slider-two card-m">
+                        <h5>限上贸易</h5>
+                        <h4><span class="speed">12.1</span>%</h4>
+                        <h4><span class="total">1521.2</span>亿元</h4>
+                    </div>
+                    <div class="slider-two card-m">
+                        <h5>外资</h5>
+                        <h4><span class="speed">12.1</span>%</h4>
+                        <h4><span class="total">1521.2</span>亿元</h4>
+                    </div>
+                </div>
+                <!-- 第1屏 -->
+                <div class="mui-slider-item">
+                    <div class="slider-two card-m">
+                        <h5>地区生产总值</h5>
+                        <h4><span class="speed">12.1</span>%</h4>
+                        <h4><span class="total">1521.2</span>亿元</h4>
+                    </div>
+                    <div class="slider-two card-m">
+                        <h5>规上工业总产值</h5>
+                        <h4><span class="speed">12.1</span>%</h4>
+                        <h4><span class="total">1521.2</span>亿元</h4>
+                    </div>
+                    <div class="slider-two card-m">
+                        <h5>固定资产投资</h5>
+                        <h4><span class="speed">12.1</span>%</h4>
+                        <h4><span class="total">1521.2</span>亿元</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="article-list">
+        <div id="app-hd"></div>
+    </div>
+</div>
+<script type=text/javascript src=../static/js/manifest.c4c36cb4a639440c75ac.js></script>
+<script type=text/javascript src=../static/js/vendor.8ae7759e75cd318de167.js></script>
+<script type=text/javascript src=../static/js/app.0c2dec342e608458ca9c.js></script>
+<script src="../js/mui.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="../libs/jquery-3.2.1.min.js"></script>
+<script src="../js/hd-data.js"></script>
+
+<script>
+    (function ($) {
+        $.init();
+        //初始化数据集store
+        new SyStore({
+            autoLoad: true,
+            datasetId: 3,
+            success: function (store) {
+//			console.log(store)
+                function getMaxMinDate(store) {
+                    var timeMap = store.collection.time;
+                    var maxDate = null;
+                    var minDate = null;
+                    $.each(timeMap, function (key, value) {
+//					console.log(arguments)
+                        var yearStr = parseInt(key.split("-")[0]);
+                        var monthStr = parseInt(key.split("-")[1]);
+                        var curDate = new Date();
+                        curDate.setDate(1);
+                        curDate.setMonth(monthStr - 1);
+                        curDate.setFullYear(yearStr);
+                        if (maxDate) {
+                            maxDate = curDate.getTime() - maxDate.getTime() > 0 ? curDate : maxDate;
+                        } else {
+                            maxDate = curDate;
+                        }
+                        if (minDate) {
+                            minDate = curDate.getTime() - minDate.getTime() > 0 ? minDate : curDate;
+                        } else {
+                            minDate = curDate;
+                        }
+                    });
+                    return {maxDate: maxDate, minDate: minDate};
+
+                }
+
+                var maxMinDate = getMaxMinDate(store);
+//			console.log(maxMinDate)
+                //初始化kit配置
+                var _store = store;
+
+                var baseRes = {
+                    frame: 200000011,
+                    area: 3519,
+
+                };
+                var baseSpeed = {
+                    frame: 200000014,
+                    area: 3519,
+
+                };
+                //总量kit
+                var kitV = new SyValueKit(baseRes, _store);
+                //增速kit
+                var kitS = new SyValueKit(baseSpeed, _store);
+                //显示初始数值
+                var nowDate = maxMinDate.maxDate;
+                //设置kit的时间
+                kitV.baseFilterV.time_year = nowDate.getFullYear(); //获取完整的年份(4位,1970-????)
+                kitV.baseFilterV.time_month = nowDate.getMonth() + 1; //获取当前月份(0-11,0代表1月)
+                kitS.baseFilterV.time_year = nowDate.getFullYear();
+                kitS.baseFilterV.time_month = nowDate.getMonth() + 1;
+                var $result = $('#default-date')[0];
+                $result.innerText = kitV.baseFilterV.time_year + '-' + kitV.baseFilterV.time_month;
+//                console.log(kitV.baseFilterV.time_month)
+                var cardh = document.getElementsByClassName("card-m").length;
+                for (var i = 0; i < cardh; i++) {
+                    var $title = $('.card-m>h5')[i].innerText;
+                    var $speed = $('.speed')[i];
+                    var $total = $('.total')[i];
+                    $speed.innerText = kitS.findValueByItemName($title, true);
+                    $total.innerText = kitV.findValueByItemName($title, true);
+                }
+
+                var result = $('#result')[0];
+                var btns = $('#default-date');
+
+                $('#arrorwLeft')[0].addEventListener('tap', function () {
+                    var timeStr = $result.innerText;
+                    var yearStr = timeStr.split("-")[0];
+//                    console.log(yearStr)
+                    var monthStr = timeStr.split("-")[1];
+                    var monthInt = parseInt(monthStr);
+                    var curTime = new Date();
+                    curTime.setFullYear(parseInt(yearStr));
+                    curTime.setDate(1);
+                    curTime.setMonth(monthInt - 1);
+                    curTime.setMonth(curTime.getMonth() - 1);
+//                    console.log(curTime)
+                    reloadValueByTime(curTime, $result, kitS, kitV)
+                })
+                $('#arrorwRight')[0].addEventListener('tap', function () {
+                    var timeStr = $result.innerText;
+                    var yearStr = timeStr.split("-")[0];
+//                    console.log(yearStr)
+                    var monthStr = timeStr.split("-")[1];
+                    var monthInt = parseInt(monthStr);
+                    var curTime = new Date();
+                    curTime.setFullYear(parseInt(yearStr));
+                    curTime.setDate(1);
+                    curTime.setMonth(monthInt - 1);
+                    curTime.setMonth(curTime.getMonth() + 1);
+//                    console.log(curTime)
+                    reloadValueByTime(curTime, $result, kitS, kitV)
+                })
+                btns.each(function (i, btn) {
+                    btn.addEventListener('tap', function () {
+                        var _self = this;
+                        if (_self.picker) {
+                            _self.picker.show(function (rs) {
+                                var year = rs.y.value;
+                                var month = parseInt(rs.m.value);
+                                var curDate = new Date();
+                                curDate.setDate(1);
+                                curDate.setFullYear(year);
+                                curDate.setMonth(month - 1);
+                                reloadValueByTime(curDate, $result, kitS, kitV)
+                            });
+                        } else {
+                            var optionsJson = this.getAttribute('data-options') || '{}';
+
+                            var options = JSON.parse(optionsJson);
+
+                            var id = this.getAttribute('id');
+                            _self.picker = new $.DtPicker(options);
+                            _self.picker.show(function (rs) {
+
+                                var year = rs.y.value;
+                                var month = parseInt(rs.m.value);
+                                var curDate = new Date();
+                                curDate.setDate(1);
+                                curDate.setFullYear(year);
+                                curDate.setMonth(month - 1);
+                                reloadValueByTime(curDate, $result, kitS, kitV)
+
+                            });
+                        }
+
+                    }, false);
+                });
+
+            }
+
+        });
+        function reloadValueByTime(curDate, $result, kitS, kitV) {
+//            console.log(curDate)
+            $result.innerText = curDate.getFullYear() + "-" + (curDate.getMonth() + 1);
+
+            var year = curDate.getFullYear();
+            var month = curDate.getMonth() + 1;
+            //设置kit的时间
+            kitV.baseFilterV.time_year = year;
+            kitV.baseFilterV.time_month = month;
+            kitS.baseFilterV.time_year = year;
+            kitS.baseFilterV.time_month = month;
+            //根据指标名称获取数值放到页面上
+            var cardh = document.getElementsByClassName("card-m").length;
+            for (var i = 0; i < cardh; i++) {
+                var $title = $('.card-m>h5')[i].innerText;
+                var $speed = $('.speed')[i];
+                var $total = $('.total')[i];
+                $speed.innerText = kitS.findValueByItemName($title, true);
+                $total.innerText = kitV.findValueByItemName($title, true);
+            }
+        }
+
+    })(mui);
+</script>
+
+<script>
+    mui.init({
+        swipeBack: false,
+        keyEventBind: {
+            backbutton: false //关闭back按键监听
+        },
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>青岛西海岸新区统计大数据平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/mui.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/icons-extra.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css"/>
+
+    <style>
+        .chart {
+            min-height: 120px;
+            margin: 0px;
+            padding: 0px;
+            border-bottom: 1px solid #dde0e0;
+        }
+
+        .tables {
+            border-bottom: 1px solid #dde0e0;
+        }
+
+        .row-quota {
+            font-size: 12px;
+        }
+
+        .mui-content {
+            background-color: #ffffff;
+        }
+
+        .mui-content-padded h5 {
+            font-size: 16px;
+            font-weight: 400;
+
+            color: #122B40;
+        }
+
+        .mui-content-padded span {
+
+            font-size: 14px;
+            color: #122B40;
+            font-weight: 200;
+        }
+
+        #result {
+
+            font-size: 14px;
+            color: #122B40;
+            font-weight: 200;
+        }
+
+        #date-select h5 {
+            float: left;
+        }
+
+        #date-select h6 {
+            float: right;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        #date-select i {
+            font-size: 16px;
+        }
+
+        #arrorwLeft {
+            padding: 12px 15px;
+        }
+
+        #arrorwRight {
+            padding: 12px 15px;
+        }
+        #default-date {
+	color:#d1356c;
+	font-weight: 500;
+	font-size: 16px;
+}
+    </style>
+</head>
+<body>
+<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+    <div class="mui-scroll">
+        <div class="mui-content-padded">
+            <div class="slider-header" id='date-select' data-options='{"type":"month"}'>
+                <h5>地区生产总值</h5>
+                <h6 id='date-select'>
+                    <i id="arrorwLeft" class="mui-icon mui-icon-arrowleft"></i>
+                    <span id="default-date" data-options='{"type":"month"}'>2017-06</span>
+                    <i class="mui-icon-extra mui-icon-extra-calendar"></i>
+                    <i id="arrorwRight" class="mui-icon mui-icon-arrowright"></i>
+                </h6>
+            </div>
+            <div class="tables" id="tables">
+                <div class="row-quota" id="quota">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>新区</th>
+                            <th>累计（万元）</th>
+                            <th>增长</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="tdT">上海浦东新区</td>
+                            <td class="tdV">6907.4</td>
+                            <td class="tdS">8.8%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="tdT">天津滨海新区</td>
+                            <td class="tdV">5249.1</td>
+                            <td class="tdS">7.1%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="tdT">青岛西海岸新区</td>
+                            <td class="tdV">2406.8</td>
+                            <td class="tdS">11.4%</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td class="tdT">重庆两江新区</td>
+                            <td class="tdV">1915.55</td>
+                            <td class="tdS">10.3%</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td class="tdT">大连金普新区</td>
+                            <td class="tdV">1734.1</td>
+                            <td class="tdS">7.1%</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td class="tdT">甘肃兰州新区</td>
+                            <td class="tdV"></td>
+                            <td class="tdS"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="total-run" class="chart"></div>
+            <h5>工业增加值</h5>
+            <div class="tables" id="tables">
+                <div class="row-quota" id="quota">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>新区</th>
+                            <th>累计（万元）</th>
+                            <th>增长</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="tdT">上海浦东新区</td>
+                            <td class="tdV">6907.4</td>
+                            <td class="tdS">8.8%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="tdT">天津滨海新区</td>
+                            <td class="tdV">5249.1</td>
+                            <td class="tdS">7.1%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="tdT">青岛西海岸新区</td>
+                            <td class="tdV">2406.8</td>
+                            <td class="tdS">11.4%</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td class="tdT">重庆两江新区</td>
+                            <td class="tdV">1915.55</td>
+                            <td class="tdS">10.3%</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td class="tdT">大连金普新区</td>
+                            <td class="tdV">1734.1</td>
+                            <td class="tdS">7.1%</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td class="tdT">甘肃兰州新区</td>
+                            <td class="tdV"></td>
+                            <td class="tdS"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="industry-run" class="chart"></div>
+            <h5>固定资产投资</h5>
+            <div class="tables" id="tables">
+                <div class="row-quota" id="quota">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>新区</th>
+                            <th>累计（万元）</th>
+                            <th>增长</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="tdT">上海浦东新区</td>
+                            <td class="tdV">6907.4</td>
+                            <td class="tdS">8.8%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="tdT">天津滨海新区</td>
+                            <td class="tdV">5249.1</td>
+                            <td class="tdS">7.1%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="tdT">青岛西海岸新区</td>
+                            <td class="tdV">2406.8</td>
+                            <td class="tdS">11.4%</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td class="tdT">重庆两江新区</td>
+                            <td class="tdV">1915.55</td>
+                            <td class="tdS">10.3%</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td class="tdT">大连金普新区</td>
+                            <td class="tdV">1734.1</td>
+                            <td class="tdS">7.1%</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td class="tdT">甘肃兰州新区</td>
+                            <td class="tdV"></td>
+                            <td class="tdS"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="assets-run" class="chart"></div>
+            <h5>一般公共预算收入</h5>
+            <div class="tables" id="tables">
+                <div class="row-quota" id="quota">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>新区</th>
+                            <th>累计（万元）</th>
+                            <th>增长</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="tdT">上海浦东新区</td>
+                            <td class="tdV">6907.4</td>
+                            <td class="tdS">8.8%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="tdT">天津滨海新区</td>
+                            <td class="tdV">5249.1</td>
+                            <td class="tdS">7.1%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="tdT">青岛西海岸新区</td>
+                            <td class="tdV">2406.8</td>
+                            <td class="tdS">11.4%</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td class="tdT">重庆两江新区</td>
+                            <td class="tdV">1915.55</td>
+                            <td class="tdS">10.3%</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td class="tdT">大连金普新区</td>
+                            <td class="tdV">1734.1</td>
+                            <td class="tdS">7.1%</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td class="tdT">甘肃兰州新区</td>
+                            <td class="tdV"></td>
+                            <td class="tdS"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="budget-run" class="chart"></div>
+            <h5>社会消费品零售额</h5>
+            <div class="tables" id="tables">
+                <div class="row-quota" id="quota">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>新区</th>
+                            <th>累计（万元）</th>
+                            <th>增长</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="tdT">上海浦东新区</td>
+                            <td class="tdV">6907.4</td>
+                            <td class="tdS">8.8%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="tdT">天津滨海新区</td>
+                            <td class="tdV">5249.1</td>
+                            <td class="tdS">7.1%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="tdT">青岛西海岸新区</td>
+                            <td class="tdV">2406.8</td>
+                            <td class="tdS">11.4%</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td class="tdT">重庆两江新区</td>
+                            <td class="tdV">1915.55</td>
+                            <td class="tdS">10.3%</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td class="tdT">大连金普新区</td>
+                            <td class="tdV">1734.1</td>
+                            <td class="tdS">7.1%</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td class="tdT">甘肃兰州新区</td>
+                            <td class="tdV"></td>
+                            <td class="tdS"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="sale-run" class="chart"></div>
+
+        </div>
+    </div>
+</div>
+
+<script src="../libs/echarts-all-3.js"></script>
+<script src="../js/hd-data.js"></script>
+<script src="../js/timeline.js"></script>
+<script src="../js/mui.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="../libs/jquery-2.1.0.js"></script>
+<script>
+    (function ($) {
+        $.init();
+        //初始化数据集store
+        new SyStore({
+            autoLoad: true,
+            datasetId: 3,
+            success: function (store) {
+//			console.log(store)
+                city(store)
+                function getMaxMinDate(store) {
+                    var timeMap = store.collection.time;
+                    var maxDate = null;
+                    var minDate = null;
+                    $.each(timeMap, function (key, value) {
+//					console.log(arguments)
+                        var yearStr = parseInt(key.split("-")[0]);
+                        var monthStr = parseInt(key.split("-")[1]);
+                        var curDate = new Date();
+                        curDate.setDate(1);
+                        curDate.setMonth(monthStr - 1);
+                        curDate.setFullYear(yearStr);
+                        if (maxDate) {
+                            maxDate = curDate.getTime() - maxDate.getTime() > 0 ? curDate : maxDate;
+                        } else {
+                            maxDate = curDate;
+                        }
+                        if (minDate) {
+                            minDate = curDate.getTime() - minDate.getTime() > 0 ? minDate : curDate;
+                        } else {
+                            minDate = curDate;
+                        }
+                    });
+                    return {maxDate: maxDate, minDate: minDate};
+
+                }
+
+                var maxMinDate = getMaxMinDate(store);
+//			console.log(maxMinDate)
+                //初始化kit配置
+                var _store = store;
+
+                var baseRes = {
+                    frame: 200000011,
+                    area: 3519,
+
+                };
+                var baseSpeed = {
+                    frame: 200000014,
+                    area: 3519,
+
+                };
+                //总量kit
+                var kitV = new SyValueKit(baseRes, _store);
+                //增速kit
+                var kitS = new SyValueKit(baseSpeed, _store);
+                //显示初始数值
+                var nowDate = maxMinDate.maxDate;
+                //设置kit的时间
+                kitV.baseFilterV.time_year = nowDate.getFullYear(); //获取完整的年份(4位,1970-????)
+                kitV.baseFilterV.time_month = nowDate.getMonth() + 1; //获取当前月份(0-11,0代表1月)
+                kitS.baseFilterV.time_year = nowDate.getFullYear();
+                kitS.baseFilterV.time_month = nowDate.getMonth() + 1;
+                var $result = $('#default-date')[0];
+                $result.innerText = kitV.baseFilterV.time_year + '-' + kitV.baseFilterV.time_month;
+//                console.log(kitV.baseFilterV.time_month)
+                var cardh = document.getElementsByClassName("tdT").length;
+                console.log(cardh)
+                for (var i = 0; i < cardh; i++) {
+                    var $title = $('.tdT')[i].innerText;
+                    var $speed = $('.tdS')[i];
+                    var $total = $('.tdV')[i];
+                    $speed.innerText = kitS.findValueByItemName($title, true);
+                    $total.innerText = kitV.findValueByItemName($title, true);
+                }
+
+                var result = $('#result')[0];
+                var btns = $('#default-date');
+
+                $('#arrorwLeft')[0].addEventListener('tap', function () {
+                    var timeStr = $result.innerText;
+                    var yearStr = timeStr.split("-")[0];
+//                    console.log(yearStr)
+                    var monthStr = timeStr.split("-")[1];
+                    var monthInt = parseInt(monthStr);
+                    var curTime = new Date();
+                    curTime.setFullYear(parseInt(yearStr));
+                    curTime.setDate(1);
+                    curTime.setMonth(monthInt - 1);
+                    curTime.setMonth(curTime.getMonth() - 1);
+//                    console.log(curTime)
+                    reloadValueByTime(curTime, $result, kitS, kitV)
+                })
+                $('#arrorwRight')[0].addEventListener('tap', function () {
+                    var timeStr = $result.innerText;
+                    var yearStr = timeStr.split("-")[0];
+//                    console.log(yearStr)
+                    var monthStr = timeStr.split("-")[1];
+                    var monthInt = parseInt(monthStr);
+                    var curTime = new Date();
+                    curTime.setFullYear(parseInt(yearStr));
+                    curTime.setDate(1);
+                    curTime.setMonth(monthInt - 1);
+                    curTime.setMonth(curTime.getMonth() + 1);
+//                    console.log(curTime)
+                    reloadValueByTime(curTime, $result, kitS, kitV)
+                })
+                btns.each(function (i, btn) {
+                    btn.addEventListener('tap', function () {
+                        var _self = this;
+                        if (_self.picker) {
+                            _self.picker.show(function (rs) {
+                                var year = rs.y.value;
+                                var month = parseInt(rs.m.value);
+                                var curDate = new Date();
+                                curDate.setDate(1);
+                                curDate.setFullYear(year);
+                                curDate.setMonth(month - 1);
+                                reloadValueByTime(curDate, $result, kitS, kitV)
+                            });
+                        } else {
+                            var optionsJson = this.getAttribute('data-options') || '{}';
+
+                            var options = JSON.parse(optionsJson);
+
+                            var id = this.getAttribute('id');
+                            _self.picker = new $.DtPicker(options);
+                            _self.picker.show(function (rs) {
+
+                                var year = rs.y.value;
+                                var month = parseInt(rs.m.value);
+                                var curDate = new Date();
+                                curDate.setDate(1);
+                                curDate.setFullYear(year);
+                                curDate.setMonth(month - 1);
+                                reloadValueByTime(curDate, $result, kitS, kitV)
+
+                            });
+                        }
+
+                    }, false);
+                });
+
+            }
+
+        });
+        function reloadValueByTime(curDate, $result, kitS, kitV) {
+//            console.log(curDate)
+            $result.innerText = curDate.getFullYear() + "-" + (curDate.getMonth() + 1);
+
+            var year = curDate.getFullYear();
+            var month = curDate.getMonth() + 1;
+            //设置kit的时间
+            kitV.baseFilterV.time_year = year;
+            kitV.baseFilterV.time_month = month;
+            kitS.baseFilterV.time_year = year;
+            kitS.baseFilterV.time_month = month;
+            //根据指标名称获取数值放到页面上
+            var cardh = document.getElementsByClassName("tdT").length;
+            for (var i = 0; i < cardh; i++) {
+                var $title = $('.tdT')[i].innerText;
+                var $speed = $('.tdS')[i];
+                var $total = $('.tdV')[i];
+                $speed.innerText = kitS.findValueByItemName($title, true);
+                $total.innerText = kitV.findValueByItemName($title, true);
+            }
+        }
+
+    })(mui);
+</script>
+<script type="text/javascript">
+    function city(store) {
+        var axisD = [];
+        for (var item in axisArr) {
+            axisD.push(axisArr[item].name);
+        }
+        var axisQuarter = [];
+        for (var item in jiduTime.cAxisArr) {
+            axisQuarter.push(jiduTime.cAxisArr[item].name);
+        }
+        var chartKit = new SyChartSeriesKit({
+            store: store,
+            series: [{
+                type: "item",
+                extField: store.findMetaByItemName({
+                    type: 'item',
+                    name: ''
+                }).extField
+            }, {
+                type: 'frame',
+                extField: store.findMetaByItemName({
+                    type: 'frame',
+                    name: '累计'
+                }).extField
+            }],
+            axis: axisArr,
+        });
+        var chartKitQ = new SyChartSeriesKit({
+            store: store,
+            series: [{
+                type: "item",
+                extField: store.findMetaByItemName({
+                    type: 'item',
+                    name: ''
+                }).extField
+            }, {
+                type: 'frame',
+                extField: store.findMetaByItemName({
+                    type: 'frame',
+                    name: '累计'
+                }).extField
+            }],
+            axis: jiduTime.cAxisArr,
+        });
+        // 基于准备好的dom，初始化echarts实例
+        var totalChart = echarts.init(document.getElementById('total-run'));
+        var industryChart = echarts.init(document.getElementById('industry-run'));
+        var assetsChart = echarts.init(document.getElementById('assets-run'));
+        var budgetChart = echarts.init(document.getElementById('budget-run'));
+        var saleChart = echarts.init(document.getElementById('sale-run'));
+
+        // 指定图表的配置项和数据
+        var optionTotal = {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            grid: [
+                {x: '10%', y: '5%', width: '88%', height: '60%'},
+            ],
+            toolbox: {},
+            xAxis: {
+                type: 'category',
+                splitLine: {show: true},
+                boundaryGap: false,
+                data: axisQuarter
+            },
+            yAxis: {
+                type: 'value',
+                name: '增速',
+                splitLine: {show: true},
+                axisLabel: {
+                    formatter: '{value}%'
+                }
+            },
+            series: [
+                {
+                    name: '增速',
+                    type: 'line',
+                    stack: '总量',
+                    data: chartKitQ.genSeriesData({
+                        series: [{
+                            type: "item",
+                            extField: store.findMetaByItemName({
+                                type: 'item',
+                                name: '地区生产总值'
+                            }).extField
+                        }, {
+                            type: 'frame',
+                            extField: store.findMetaByItemName({
+                                type: 'frame',
+                                name: '增长'
+                            }).extField
+                        }]
+                    })
+                }
+            ]
+        };
+        var optionIndustry = {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            grid: [
+                {x: '10%', y: '5%', width: '88%', height: '60%'},
+            ],
+            toolbox: {},
+            xAxis: {
+                type: 'category',
+                splitLine: {show: true},
+                boundaryGap: false,
+                data: axisD
+            },
+            yAxis: {
+                splitLine: {show: true},
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '增速',
+                    type: 'line',
+                    stack: '总量',
+                    data: chartKit.genSeriesData({
+                        series: [{
+                            //        name: "资产投资",
+                            type: "item",
+                            extField: store.findMetaByItemName({
+                                type: 'item',
+                                name: '工业'
+                            }).extField
+                        }, {
+                            //        name: 2,
+                            type: 'frame',
+                            extField: store.findMetaByItemName({
+                                type: 'frame',
+                                name: '增长'
+                            }).extField
+                        }]
+                    })
+                }
+            ]
+        };
+        var optionAssets = {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            grid: [
+                {x: '10%', y: '5%', width: '88%', height: '60%'},
+            ],
+            toolbox: {},
+            xAxis: {
+                type: 'category',
+                splitLine: {show: true},
+                boundaryGap: false,
+                data: axisD
+            },
+            yAxis: {
+                splitLine: {show: true},
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '增速',
+                    type: 'line',
+                    stack: '总量',
+                    data: chartKit.genSeriesData({
+                        series: [{
+                            //        name: "资产投资",
+                            type: "item",
+                            extField: store.findMetaByItemName({
+                                type: 'item',
+                                name: '固定资产投资'
+                            }).extField
+                        }, {
+                            //        name: 2,
+                            type: 'frame',
+                            extField: store.findMetaByItemName({
+                                type: 'frame',
+                                name: '增长'
+                            }).extField
+                        }]
+                    })
+                }
+            ]
+        };
+        var optionBudget = {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            grid: [
+                {x: '10%', y: '5%', width: '88%', height: '60%'},
+            ],
+            toolbox: {},
+            xAxis: {
+                type: 'category',
+                splitLine: {show: true},
+                boundaryGap: false,
+                data: axisD
+            },
+            yAxis: {
+                splitLine: {show: true},
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '增速',
+                    type: 'line',
+                    stack: '总量',
+                    data: chartKit.genSeriesData({
+                        series: [{
+                            //        name: "资产投资",
+                            type: "item",
+                            extField: store.findMetaByItemName({
+                                type: 'item',
+                                name: '一般公共预算收入'
+                            }).extField
+                        }, {
+                            //        name: 2,
+                            type: 'frame',
+                            extField: store.findMetaByItemName({
+                                type: 'frame',
+                                name: '增长'
+                            }).extField
+                        }]
+                    })
+                }
+            ]
+        };
+        var optionSale = {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            grid: [
+                {x: '10%', y: '5%', width: '88%', height: '60%'},
+            ],
+            toolbox: {},
+            xAxis: {
+                type: 'category',
+                splitLine: {show: true},
+                boundaryGap: false,
+                data: axisD
+            },
+            yAxis: {
+                splitLine: {show: true},
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '增速',
+                    type: 'line',
+                    stack: '总量',
+                    data: chartKit.genSeriesData({
+                        series: [{
+                            //        name: "资产投资",
+                            type: "item",
+                            extField: store.findMetaByItemName({
+                                type: 'item',
+                                name: '社会消费'
+                            }).extField
+                        }, {
+                            //        name: 2,
+                            type: 'frame',
+                            extField: store.findMetaByItemName({
+                                type: 'frame',
+                                name: '增长'
+                            }).extField
+                        }]
+                    })
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        totalChart.setOption(optionTotal);
+        industryChart.setOption(optionIndustry);
+        assetsChart.setOption(optionAssets);
+        budgetChart.setOption(optionBudget);
+        saleChart.setOption(optionSale);
+
+        //浏览器大小改变时重置大小
+        $(window).resize(function () {
+            totalChart.resize();
+            industryChart.resize();
+            assetsChart.resize();
+            budgetChart.resize();
+            saleChart.resize();
+
+        });
+    }
+</script>
+<script>
+    mui.init({
+        swipeBack: false,
+        keyEventBind: {
+            backbutton: false //关闭back按键监听
+        },
+        pullRefresh: {
+            container: '#pullrefresh',
+            up: {
+                contentrefresh: '正在加载...',
+                callback: pullupRefresh
+            }
+        }
+    });
+    var count = 0;
+    /**
+     * 上拉加载具体业务实现
+     */
+    function pullupRefresh() {
+        setTimeout(function () {
+            mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+            var table = document.body.querySelector('.mui-table-view');
+            var cells = document.body.querySelectorAll('.mui-table-view-cell');
+            for (var i = cells.length, len = i + 20; i < len; i++) {
+                var li = document.createElement('li');
+                li.className = 'mui-table-view-cell';
+                li.innerHTML = '<a class="mui-navigate-right">社会-Item ' + (i + 1) + '</a>';
+            }
+        }, 1000);
+    }
+    $(document).ready(function () {
+        var _width = $('#quota').width();
+        $('#quota th:first-child').width(_width * 0.1);
+        $('#quota td:first-child').width(_width * 0.1);
+        $('#quota th:nth-child(2)').width(_width * 0.3);
+        $('#quota td:nth-child(2)').width(_width * 0.3);
+        $('#quota th:nth-child(3)').width(_width * 0.3);
+        $('#quota td:nth-child(3)').width(_width * 0.3);
+        $('#quota th:nth-child(4)').width(_width * 0.2);
+        $('#quota td:nth-child(4)').width(_width * 0.2);
+    })
+</script>
+</body>
+
+</html>
